@@ -1,13 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Route, BrowserRouter as Router, Redirect ,Switch } from 'react-router-dom';
+
 import './index.css';
-import App from './App';
+
+import Home from './pages/Home/App';
+import Usuario from './pages/Usuario/Usuario.jsx';
+import NotFound from './pages/notFound/NotFound';
+
+
 import reportWebVitals from './reportWebVitals';
 
+const routing = (
+  <Router>
+    <div>
+      <Switch>
+        <Route exact path="/" component={Home} /> {/* Home */}
+        <Route path="/Usuario" component={Usuario} /> {/* Usuario */}
+        <Route path="/notFound" component={NotFound} /> {/* Not Found */}
+        <Redirect to="/notFound" /> {/* Redireciona para Not Found caso não encontre nenhuma rota */}
+      </Switch>
+    </div>
+  </Router>
+)
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  routing,
   document.getElementById('root')
 );
 
